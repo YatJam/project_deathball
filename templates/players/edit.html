@@ -1,12 +1,52 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h2>Update a Player</h2>
+<h2>Update a player</h2>
 
     <form action="/players/{{ player.id }}" method="POST">
         <div>
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" value="{{ player.name }}">
+        </div>
+        <div>
+            <label for="race">Race:</label>
+            <select name="race" id="race">
+                <option value="{{ player.race }}">{{ player.race }} (current)</option>
+                <option value="Daemon">Daemon</option>
+                <option value="Dwarf">Dwarf</option>
+                <option value="Elf">Elf</option>
+                <option value="Goblin">Goblin</option>
+                <option value="Halfling">Halfling</option>
+                <option value="Human">Human</option>
+                <option value="Orc">Orc</option>
+                <option value="Treeman">Treeman</option>
+                <option value="Troll">Troll</option>
+                <option value="Undead">Undead</option>
+            </select>
+            <label for="position">Position:</label>
+            <select name="position" id="position">
+                <option value="{{ player.position}}">{{ player.position }} (current)</option>
+                <option value="Blitzer">Blitzer</option>
+                <option value="Blocker">Blocker</option>
+                <option value="Catcher">Catcher</option>
+                <option value="Coach">Coach</option>
+                <option value="Lineman">Lineman</option>
+                <option value="Runner">Runner</option>
+                <option value="Star Player">Star Player</option>
+                <option value="Thrower">Thrower</option>
+            </select>
+            <label for="special_ability">Special Ability:</label>
+            <input type="text" name="special_ability" id="special_ability">
+            <label for="status">Status:</label>
+            <select name="status" id="status">
+                <option value="{{ player.status }}">{{ player.status }} (current)</option>
+                <option value="Healthy">Healthy</option>
+                <option value="Injured">Injured</option>
+                <option value="Unconcious">Unconcious</option>
+                <option value="Possessed">Possessed</option>
+                <option value="Dead">Dead</option>
+            </select>
+        <div>
             <input type="submit">
         </div>
     </form>

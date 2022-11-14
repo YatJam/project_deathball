@@ -15,9 +15,9 @@ def teams():
 def create_team():
     name = request.form["name"]
     race = request.form["race"]
-    total_wins = request.form["total_wins"]
-    total_loses = request.form["total_loses"]
-    total_fouls = request.form["total_fouls"]
+    total_wins = None
+    total_loses = None
+    total_fouls = None
     new_team = Team(name, race, total_wins, total_loses, total_fouls)
     team_repository.save(new_team)
     return redirect("/teams")

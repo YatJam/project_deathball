@@ -3,8 +3,8 @@ from db.run_sql import run_sql
 from models.player import Player
 
 def save(player):
-    sql = "INSERT INTO players (name, position, special_ability, status) VALUES (%s, %s, %s, %s) RETURNING id"
-    values = [player.name, player.position, player.special_ability, player.status]
+    sql = "INSERT INTO players (name, race, position, special_ability, status) VALUES (%s, %s, %s, %s, %s) RETURNING id"
+    values = [player.name, player.race, player.position, player.special_ability, player.status]
     results = run_sql(sql, values)
     id = results[0]['id']
     player.id = id
@@ -15,7 +15,7 @@ def select_all():
     sql = "SELECT * FROM players"
     results = run_sql(sql)
     for result in results:
-        player = Player(result["name"], result["position"], result["special_ability"], result["status"], result["id"])
+        player = Player(result["name"], result["race"], result["position"], result["special_ability"], result["status"], result["id"])
         players.append(player)
     return players
 
@@ -27,7 +27,7 @@ def select(id):
     results = run_sql(sql, values)
     if results:
         result = results[0]
-        player = Player(result["name"], result["position"], result["special_ability"], result["status"], result["id"])
+        player = Player(result["name"], result["race"], result["position"], result["special_ability"], result["status"], result["id"])
     return player
 
 
@@ -43,6 +43,6 @@ def delete(id):
 
 
 def update(player):
-    sql = "UPDATE players SET (name, position, special_ability, status) = (%s, %s, %s, %s) WHERE id = %s"
-    values = [player.name, player.position, player.special_ability, player.status, player.id]
+    sql = "UPDATE players SET (name, race, position, special_ability, status) = (%s, %s, %s, %s, %s) WHERE id = %s"
+    values = [player.name, player.race, player.position, player.special_ability, player.status, player.id]
     run_sql(sql, values)

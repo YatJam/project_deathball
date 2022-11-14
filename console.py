@@ -12,13 +12,13 @@ import repositories.game_repository as game_repository
 player_repository.delete_all()
 team_repository.delete_all()
 
-player_1 = Player("Brian", "Blocker", "blocks", "healthy")
+player_1 = Player("Brian", "Human", "Blocker", "blocks", "healthy")
 player_repository.save(player_1)
 
-player_2 = Player("Steve", "Blitzer", "fast", "healthy")
+player_2 = Player("Steve", "Elf", "Blitzer", "fast", "healthy")
 player_repository.save(player_2)
 
-player_3 = Player("Alice", "Thrower", "can throw", "healthy")
+player_3 = Player("Alice", "Dwarf", "Thrower", "can throw", "healthy")
 player_repository.save(player_3)
 
 team_1 = Team("Ork orkers", "Orks", 4, 2, 14)

@@ -17,10 +17,11 @@ def new_player():
 @players_blueprint.route("/players", methods=["POST"])
 def create_player():
     name = request.form["name"]
+    race = request.form["race"]
     position = request.form["position"]
     special_ability = request.form["special_ability"]
-    status = request.form["status"]
-    new_player = Player(name, position, special_ability, status)
+    status = "Healthy"
+    new_player = Player(name, race, position, special_ability, status)
     player_repository.save(new_player)
     return redirect("/players")
 
@@ -32,8 +33,11 @@ def edit_player(id):
 @players_blueprint.route("/players/<id>", methods=["POST"])
 def update_player(id):
     name = request.form["name"]
-
-    player = Player(name, id)
+    race = request.form["race"]
+    position = request.form["position"]
+    special_ability = request.form["special_ability"]
+    status = request.form["status"]
+    player = Player(name, race, position, special_ability, status, id)
     player_repository.update(player)
     return redirect("/players")
 

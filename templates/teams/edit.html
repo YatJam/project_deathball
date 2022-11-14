@@ -1,6 +1,38 @@
 {% extends "base.html" %}
 {% block content %}
 
+<h2>Update a team</h2>
 
+<form action="/teams/{{ team.id }}" method="POST">
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="{{ team.name }}">
+    </div>
+    <div>
+        <label for="race">Race:</label>
+        <select name="race" id="race">
+            <option value="{{ team.race }}">{{ team.race }} (current)</option>
+            <option value="Daemons">Daemons</option>
+            <option value="Dwarves">Dwarves</option>
+            <option value="Elves">Elves</option>
+            <option value="Goblins">Goblins</option>
+            <option value="Halflings">Halflings</option>
+            <option value="Humans">Humans</option>
+            <option value="Orcs">Orcs</option>
+            <option value="Undead">Undead</option> 
+        </select>
+    </div>
+    <div>
+        <label for="total_wins">Total Wins:</label>
+        <input type="text" id="total_wins" name="total_wins" value="{{ team.total_wins }}">
+        <label for="total_loses">Total Loses:</label>
+        <input type="text" id="total_loses" name="total_loses" value="{{ team.total_loses }}">
+        <label for="total_fouls">Total Fouls:</label>
+        <input type="text" id="total_fouls" name="total_fouls" value="{{ team.total_fouls}}">
+    </div>
+    <div>
+        <input type="submit">
+    </div>
+</form>
 
 {% endblock %}

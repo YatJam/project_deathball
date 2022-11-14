@@ -4,6 +4,7 @@ DROP TABLE IF EXISTS teams;
 CREATE TABLE players (
     id SERIAL PRIMARY KEY,
     name VARCHAR(225),
+    race VARCHAR(225),
     position VARCHAR(225),
     special_ability VARCHAR(225),
     status VARCHAR(225)

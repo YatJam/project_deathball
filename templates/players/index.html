@@ -3,16 +3,60 @@
 
     <h2>Players</h2>
 
-    {% for player in players %}
+    <h1>Draft new player:</h1>
+    <form class="new-player" action="/players" method="post">
+        <label for="name">Player Name:</label>
+        <input type="text" name="name" id="name">
+        <label for="race">Race:</label>
+        <select name="race" id="race">
+            <option value="" disabled selected>select player race</option>
+            <option value="Daemon">Daemon</option>
+            <option value="Dwarf">Dwarf</option>
+            <option value="Elf">Elf</option>
+            <option value="Goblin">Goblin</option>
+            <option value="Halfling">Halfling</option>
+            <option value="Human">Human</option>
+            <option value="Orc">Orc</option>
+            <option value="Treeman">Treeman</option>
+            <option value="Troll">Troll</option>
+            <option value="Undead">Undead</option>
+        </select>
+        <label for="position">Position:</label>
+        <select name="position" id="position">
+            <option value="" disabled selected>select player position</option>
+            <option value="Blitzer">Blitzer</option>
+            <option value="Blocker">Blocker</option>
+            <option value="Catcher">Catcher</option>
+            <option value="Coach">Coach</option>
+            <option value="Lineman">Lineman</option>
+            <option value="Runner">Runner</option>
+            <option value="Star Player">Star Player</option>
+            <option value="Thrower">Thrower</option>
+        </select>
+        <label for="special_ability">Special Ability:</label>
+        <input type="text" name="special_ability" id="special_ability">
+        <input type="submit" value="Add player to roster">
+      </form>
+    
+    
 
-    <section>
-        <p>{{ player.name }}</p>
-        <a href="/players/{{ player.id }}/edit"></a>
-        <form action="/players/{{ player.id }}/delete" method="POST">
-            <input type="submit" value="Delete">
-        </form>
-    </section>
-    {% endfor %}
+      {% for player in players %}
+
+      <section>
+          <h3>{{ player.name }}</h3>
+          <p>{{ player.race }}</p>
+          <p>Position: {{ player.position }}, Special Ability: {{ player.special_ability }}, Status: {{ player.status }}
+          </p>
+  
+          <a href="/players/{{ player.id }}/edit">Edit</a>
+          <form action="/players/{{ player.id }}/delete" method="POST">
+              <input type="submit" value="Delete">
+          </form>
+          <a href="/players/{{ player.id }}">Details</a>
+          <hr>
+      </section>
+  
+      {% endfor %}
 
 
 {% endblock %}
