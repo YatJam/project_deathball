@@ -4,9 +4,33 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <title>DEATH BALL</title>
 </head>
 <body>
-    
+    <header>
+        <h1>DEATH BALL</h1>
+        <nav>
+            <ul class="menu">
+                <li><a href="/">Home</a></li>
+                <li>
+                    Teams
+                    <ul>
+                        <li><a href="/teams">All</a></li>
+                        <li><a href="/teams/new">Add</a></li>
+                    </ul>
+                </li>
+                <li>
+                    Players
+                    <ul>
+                        <li><a href="/players">All</a></li>
+                        <li><a href="/players/new">Add</a></li>
+                    </ul>
+                </li>
+                
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
 </body>
 </html>

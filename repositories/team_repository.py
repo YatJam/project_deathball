@@ -4,7 +4,8 @@ from models.team import Team
 import repositories.player_repository as player_repository
 
 def save(team):
-    sql = """INSERT INTO teams (name, race, players, star_player_id, total_wins, total_loses, total_fouls) 
+    sql = """INSERT INTO teams 
+    (name, race, players, star_player_id, total_wins, total_loses, total_fouls) 
     VALUES (%s, %s, %s, %s, %s, %s, %s) RETURNING id"""
     values = [team.name, team.race, team.star_player.id, team.total_wins, team.total_loses, team.total_fouls]
     results = run_sql(sql, values)
@@ -45,7 +46,21 @@ def delete(id):
 
 
 def update(team):
-    sql = """UPDATE teams SET (name, race, players, star_player, total_wins, total_loses, total_fouls) = 
+    sql = """UPDATE teams SET 
+    (name, race, players, star_player, total_wins, total_loses, total_fouls) = 
     (%s, %s, %s, %s, %s, %s, %s) WHERE id = %s"""
     values = [team.name, team.race, team.players, team.star_player, team.total_wins, team.total_loses, team.total_fouls, team.id]
     run_sql(sql, values)
+
+def show_players(team):
+    players = []
+    sql = """SELECT players.id AS player_id
+    FROM players
+    INNER JOIN teams
+    ON teams.id = teams.player_id WHERE team.id = %s"""
+    values = [team.id]
+    results = run_sql(sql, values)
+    for result in results:
+        player = player_repository.select(result["player_id"])
+        players.append(player)
+    return players
