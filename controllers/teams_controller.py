@@ -15,33 +15,26 @@ def teams():
 def create_team():
     name = request.form["name"]
     race = request.form["race"]
-    players = request.form["players"]
-    star_player_id = request.form["star_player_id"]
-    star_player = player_repository.select(star_player_id)
     total_wins = request.form["total_wins"]
     total_loses = request.form["total_loses"]
     total_fouls = request.form["total_fouls"]
-    new_team = Team(name, race, players, star_player, total_wins, total_loses, total_fouls)
+    new_team = Team(name, race, total_wins, total_loses, total_fouls)
     team_repository.save(new_team)
     return redirect("/teams")
 
 @teams_blueprint.route("/teams/<id>/edit")
 def edit_team(id):
     team = team_repository.select(id)
-    star_player = player_repository.select_all()
-    return render_template('teams/edit.html', team=team, star_player=star_player)
+    return render_template('teams/edit.html', team=team)
 
 @teams_blueprint.route("/teams/<id>", methods=["POST"])
 def update_team(id):
     name = request.form["name"]
     race = request.form["race"]
-    players = request.form["players"]
-    star_player_id = request.form["star_player_id"]
-    star_player = player_repository.select(star_player_id)
     total_wins = request.form["total_wins"]
     total_loses = request.form["total_loses"]
     total_fouls = request.form["total_fouls"]
-    team = Team(name, race, players, star_player, total_wins, total_loses, total_fouls, id)
+    team = Team(name, race, total_wins, total_loses, total_fouls, id)
     team_repository.update(team)
     return redirect("/teams")
 
