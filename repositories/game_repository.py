@@ -6,7 +6,7 @@ from repositories import player_repository, team_repository
 
 def save(game):
     sql = """
-    INSERT INTO games (team_1_id, team_1_score, team_2_id, team_2_score, location, date, winner) 
+    INSERT INTO games (home_team_id, team_1_score, team_2_id, team_2_score, location, date, winner) 
     VALUES (%s, %s, %s, %s, %s, %s, %s) 
     RETURNING id
     """
@@ -21,11 +21,11 @@ def select_all():
     results = run_sql(sql)
     
     for result in results:
-        team_1_id = result['team_1_id']
-        team_2_id = result['team_2_id']
-        team_1 = team_repository.select(team_1_id)
-        team_2 = team_repository.select(team_2_id)
-        game = Game(team_1, result["team_1_score"], team_2, result['id'], result["team_2_score"], result["location"], result["date"], result["winner"])
+        home_team_id = result['home_team_id']
+        away_team_id = result['away_team_id']
+        home_team = team_repository.select(home_team_id)
+        away_team = team_repository.select(away_team_id)
+        game = Game(home_team, result["home_team_score"], away_team, result["away_team_score"], result["location"], result["date"], result["winner"])
         games.append(game)
     return games
 
@@ -40,11 +40,11 @@ def select(id):
 
     if results:
         result = results[0]
-        team_1_id = result['team_1_id']
-        team_2_id = result['team_2_id']
-        team_1 = team_repository.select(team_1_id)
-        team_2 = team_repository.select(team_2_id)
-        game = Game(team_1, result["team_1_score"], team_2, result['id'], result["team_2_score"], result["location"], result["date"], result["winner"])
+        home_team_id = result['home_team_id']
+        away_team_id = result['away_team_id']
+        home_team = team_repository.select(home_team_id)
+        away_team = team_repository.select(away_team_id)
+        game = Game(home_team, result["home_team_score"], away_team, result["away_team_score"], result["location"], result["date"], result["winner"])
     return game
 
 def delete_all():
@@ -61,9 +61,24 @@ def delete(id):
 
 def update(game):
     sql = """
-    UPDATE games SET (team_1_id, team_1_score, team_2_id, team_2_score, location, date, winner) = 
+    UPDATE games SET (home_team_id, home_team_score, away_team_id, away_team_score, location, date, winner) = 
     (%s, %s, %s, %s, %s, %s, %s) 
     WHERE id = %s
     """
-    values = [game.team_1.id, game.team_1_score, game.team_2.id, game.team_2_score, game.location, game.date, game.winner]
+    values = [game.home_team.id, game.home_team_score, game.away_team.id, game.away_team_score, game.location, game.date, game.winner]
     run_sql(sql, values)
+
+def show_teams_players(game):
+    teams = []
+    sql = """SELECT players.id AS player_id
+    FROM players
+    INNER JOIN teams
+    ON players.id = teams.player_id
+    INNER JOIN games
+    ON teams.id = games.teams_id WHERE teams.id = %s"""
+    values = [game.id]
+    results = run_sql(sql, values)
+    for result in results:
+        team = team_repository.select(result["team_id"])
+        teams.append(team)
+    return teams   
