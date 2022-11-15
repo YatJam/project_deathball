@@ -5,7 +5,7 @@ import repositories.player_repository as player_repository
 
 def save(team):
     sql = """INSERT INTO teams 
-    (name, race, player_id total_wins, total_loses, total_fouls) 
+    (name, race, player_id, total_wins, total_loses, total_fouls) 
     VALUES (%s, %s, %s, %s, %s, %s) RETURNING id"""
     values = [team.name, team.race, team.player.id, team.total_wins, team.total_loses, team.total_fouls]
     results = run_sql(sql, values)

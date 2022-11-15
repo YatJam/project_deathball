@@ -23,11 +23,11 @@ CREATE TABLE teams (
 
 CREATE TABLE games (
     id SERIAL PRIMARY KEY,
-    home_team SERIAL NOT NULL REFERENCES teams(id),
+    home_team_id SERIAL NOT NULL REFERENCES teams(id),
     home_team_score INT,
-    away_team SERIAL NOT NULL REFERENCES teams(id),
+    away_team_id SERIAL NOT NULL REFERENCES teams(id),
     away_team_score INT,
     location VARCHAR(225),
     date VARCHAR(225),
-    winner VARCHAR(225)
+    winner_id SERIAL REFERENCES teams(id)
 )

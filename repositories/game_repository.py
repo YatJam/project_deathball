@@ -6,11 +6,11 @@ from repositories import player_repository, team_repository
 
 def save(game):
     sql = """
-    INSERT INTO games (home_team_id, team_1_score, team_2_id, team_2_score, location, date, winner) 
+    INSERT INTO games (home_team_id, home_team_score, away_team_id, away_team_score, location, date, winner_id) 
     VALUES (%s, %s, %s, %s, %s, %s, %s) 
     RETURNING id
     """
-    values = [game.team_1.id, game.team_1_score, game.team_2.id, game.team_2_score, game.location, game.date, game.winner]
+    values = [game.home_team.id, game.home_team_score, game.away_team.id, game.away_team_score, game.location, game.date, game.winner.id]
     results = run_sql(sql, values)
     id = results[0]['id']
     game.id = id
@@ -23,9 +23,11 @@ def select_all():
     for result in results:
         home_team_id = result['home_team_id']
         away_team_id = result['away_team_id']
+        winner_id = result['winner_id']
         home_team = team_repository.select(home_team_id)
         away_team = team_repository.select(away_team_id)
-        game = Game(home_team, result["home_team_score"], away_team, result["away_team_score"], result["location"], result["date"], result["winner"])
+        winner = team_repository.select(winner_id)
+        game = Game(home_team, result["home_team_score"], away_team, result["away_team_score"], result["location"], result["date"], winner, result["id"])
         games.append(game)
     return games
 
@@ -42,9 +44,11 @@ def select(id):
         result = results[0]
         home_team_id = result['home_team_id']
         away_team_id = result['away_team_id']
+        winner_id = result['winner_id']
         home_team = team_repository.select(home_team_id)
         away_team = team_repository.select(away_team_id)
-        game = Game(home_team, result["home_team_score"], away_team, result["away_team_score"], result["location"], result["date"], result["winner"])
+        winner = team_repository.select(winner_id)
+        game = Game(home_team, result["home_team_score"], away_team, result["away_team_score"], result["location"], result["date"], winner, result["id"])
     return game
 
 def delete_all():
@@ -61,11 +65,11 @@ def delete(id):
 
 def update(game):
     sql = """
-    UPDATE games SET (home_team_id, home_team_score, away_team_id, away_team_score, location, date, winner) = 
+    UPDATE games SET (home_team_id, home_team_score, away_team_id, away_team_score, location, date, winner_id) = 
     (%s, %s, %s, %s, %s, %s, %s) 
     WHERE id = %s
     """
-    values = [game.home_team.id, game.home_team_score, game.away_team.id, game.away_team_score, game.location, game.date, game.winner]
+    values = [game.home_team.id, game.home_team_score, game.away_team.id, game.away_team_score, game.location, game.date, game.winner.id]
     run_sql(sql, values)
 
 def show_teams_players(game):

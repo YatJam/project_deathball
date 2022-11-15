@@ -7,9 +7,9 @@ import repositories.team_repository as team_repository
 from models.game import Game
 import repositories.game_repository as game_repository
 
-player_repository.delete_all()
-team_repository.delete_all()
 game_repository.delete_all()
+team_repository.delete_all()
+player_repository.delete_all()
 
 player_1 = Player("Brian", "Human", "Blocker", "blocks", "healthy")
 player_repository.save(player_1)
@@ -29,7 +29,7 @@ team_repository.save(team_2)
 team_3 = Team("Dead deads", "Undead", player_3, 2, 4, 2)
 team_repository.save(team_3)
 
-game_1 = Game(team_1, 21, team_3, 17, "Black Castle", "23.05.3019", team_1)
+game_1 = Game(team_1, 21, team_3, 17, "Black Castle", "23.05.3019", team_2)
 game_repository.save(game_1)
 
 game_2 = Game(team_1, 33, team_2, 44, "Pitch No.4", "28.05.3019", team_2)

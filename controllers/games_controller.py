@@ -22,16 +22,16 @@ def create_game():
     away_team_score = None
     location = request.form['location']
     date = request.form['date']
-    winner = None
-    new_game = Game(home_team, home_team_score, away_team, away_team_score, location, date, winner)
+    winner_id = None
+    new_game = Game(home_team, home_team_score, away_team, away_team_score, location, date, winner_id)
     game_repository.save(new_game)
     return redirect("/games")
 
 @games_blueprint.route("/games/<id>/edit")
 def edit_game(id):
     game = game_repository.select(id)
-    home_team = team_repository.select()
-    away_team = team_repository.select_all()
+    home_team = team_repository.select(game.home_team.id)
+    away_team = team_repository.select(game.away_team.id)
     return render_template('games/edit.html', game=game, home_team=home_team, away_team=away_team)
 
 @games_blueprint.route("/games/<id>", methods=["POST"])
@@ -44,7 +44,8 @@ def update_game(id):
     away_team_score = request.form['away_team_score']
     location = request.form['location']
     date = request.form['date']
-    winner = request.form['winner']
+    winner_id= request.form['winner_id']
+    winner = team_repository(winner_id)
     game = Game(home_team, home_team_score, away_team, away_team_score, location, date, winner, id)
     game_repository.update(game)
     return redirect("/games")
