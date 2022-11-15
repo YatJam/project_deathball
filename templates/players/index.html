@@ -44,11 +44,16 @@
 
       <section>
           <h3>{{ player.name }}</h3>
-          <p>Race: {{ player.race }}, Team: {{ player.team }}
+          <p>Race: {{ player.race }}, Team: {{ player.team.name }}
           </p>
           <p>Position: {{ player.position }}, Special Ability: {{ player.special_ability }}, Status: {{ player.status }}
           </p>
   
+          
+          <form action="/players/{{ player.id }}/edit" method="POST">
+            <input type="submit" value="edit">
+        </form>
+
           <a href="/players/{{ player.id }}/edit">Edit</a>
           <form action="/players/{{ player.id }}/delete" method="POST">
               <input type="submit" value="Delete">

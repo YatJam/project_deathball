@@ -23,23 +23,16 @@
                 <option value="Troll">Troll</option>
                 <option value="Undead">Undead</option>
             </select>
-            <label for="team">Team:</label>
-            <select name="team" id="team">
-                <option value="{{ player.team }}">{{ player.team }} (current)</option>
-                <option value="Daemon">Daemon</option>
-                <option value="Dwarf">Dwarf</option>
-                <option value="Elf">Elf</option>
-                <option value="Goblin">Goblin</option>
-                <option value="Halfling">Halfling</option>
-                <option value="Human">Human</option>
-                <option value="Orc">Orc</option>
-                <option value="Treeman">Treeman</option>
-                <option value="Troll">Troll</option>
-                <option value="Undead">Undead</option>
+            <label for="team_id">Team:</label>
+            <select name="team_id" id="team_id">
+                <option value=""> {{ player.team.name }} current</option>
+                {% for team in teams %}
+                <option value="{{ team.id }}">{{ team.name }}</option>
+               {% endfor %}
             </select>
             <label for="position">Position:</label>
             <select name="position" id="position">
-                <option value="{{ player.position}}">{{ player.position }} (current)</option>
+                <option value="{{ player.position }}">{{ player.position }} (current)</option>
                 <option value="Blitzer">Blitzer</option>
                 <option value="Blocker">Blocker</option>
                 <option value="Catcher">Catcher</option>

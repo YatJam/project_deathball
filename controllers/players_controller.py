@@ -32,19 +32,21 @@ def create_player():
 @players_blueprint.route("/players/<id>/edit")
 def edit_player(id):
     player = player_repository.select(id)
-    team = team_repository.select_all()
-    return render_template('players/edit.html', player=player, team=team)
+    teams = team_repository.select_all()
+    return render_template('players/edit.html', player=player, teams=teams)
 
 @players_blueprint.route("/players/<id>", methods=["POST"])
 def update_player(id):
     name = request.form["name"]
     race = request.form["race"]
     team_id = request.form['team_id']
-    team = team_repository.select(team_id)
     position = request.form["position"]
     special_ability = request.form["special_ability"]
     status = request.form["status"]
+
+    team = team_repository.select(team_id)
     player = Player(name, race, team, position, special_ability, status, id)
+
     player_repository.update(player)
     return redirect("/players")
 

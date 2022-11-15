@@ -5,7 +5,7 @@ from models.team import Team
 import repositories.team_repository as team_repository
 
 def save(player):
-    sql = "INSERT INTO players (name, race, team_id position, special_ability, status) VALUES (%s, %s, %s, %s, %s, %s) RETURNING id"
+    sql = "INSERT INTO players (name, race, team_id, position, special_ability, status) VALUES (%s, %s, %s, %s, %s, %s) RETURNING id"
     values = [player.name, player.race, player.team.id, player.position, player.special_ability, player.status]
     results = run_sql(sql, values)
     id = results[0]['id']

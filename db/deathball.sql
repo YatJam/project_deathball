@@ -31,4 +31,4 @@ CREATE TABLE games (
     location VARCHAR(225),
     date VARCHAR(225),
     winner_id SERIAL REFERENCES teams(id)
-)
+);
