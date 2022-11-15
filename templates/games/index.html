@@ -3,15 +3,46 @@
 
         <h2>Games</h2>
 
+            <h3>Call a new game:</h3>
+            <form class="new-game" action="/games" method="post">
+                <select name="home_team_id" id="home_team_id">
+                    <option value="">Select home team to play</option>
+                    {% for team in teams %}
+                    <option value="{{ team.id }}">{{ team.name }}</option>
+                   {% endfor %}
+                </select>
+                <select name="away_team_id" id="awat_team_id">
+                    <option value="">Select away team to play against</option>
+                    {% for team in teams %}
+                    <option value="{{ team.id }}">{{ team.name }}</option>
+                   {% endfor %}
+                </select>
+                    <label for="location">Location:</label>
+                     <input type="text" name="location" id="location">
+                     <label for="date">Date:</label>
+                     <input type="text" name="date" id="date">
+                     <select name="winner_id" id="winner_id">
+                        <option value="winner_id">Game has not played</option>
+                 <input type="submit" value="Call game">
+             </form>
+
         {% for game in games %}
 
         <section>
             <p>{{ game.home_team.name }} vs {{ game.away_team.name }}</p>
-            <a href="/games/{{ game.id }}/edit">Edit</a>
-            <form action="/games/{{ game.id }}/delete" method="POST">
-                <input type="submit" value="Delete">
+            <p>Game location: {{ game.location}}, Date: {{ game.date }}</p>
+            <form action="/games/{{ game.id }}/edit">
+                <input type="submit" value="Update fixture">
             </form>
-        </section>
+    
+              <form action="/games/{{ game.id }}/delete" method="POST">
+                  <input type="submit" value="Call off the game">
+              </form>
+    
+              <form action="/games/{{ game.id }}/teams">
+                <input type="submit" value="Who's playing who">
+            </form>
+              <hr>
 
         {% endfor %}
     {% endblock %}

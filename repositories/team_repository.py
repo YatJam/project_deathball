@@ -50,13 +50,12 @@ def update(team):
 
 def show_players(team):
     players = []
-    sql = """SELECT players.id AS player_id
-    FROM players
-    INNER JOIN teams
-    ON teams.id = teams.player_id WHERE team.id = %s"""
+    sql = """SELECT  players.*
+            FROM players
+            WHERE teams.id = %s"""  
     values = [team.id]
     results = run_sql(sql, values)
     for result in results:
-        player = player_repository.select(result["player_id"])
+        player = player_repository.select(result["id"])
         players.append(player)
     return players

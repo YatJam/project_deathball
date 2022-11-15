@@ -29,7 +29,7 @@ player_repository.save(player_2)
 player_3 = Player("Alice", "Dwarf", team_3, "Thrower", "can throw", "healthy")
 player_repository.save(player_3)
 
-game_1 = Game(team_1, 21, team_3, 17, "Black Castle", "23.05.3019", team_2)
+game_1 = Game(team_1, 21, team_3, 17, "Black Castle", "23.05.3019", team_1)
 game_repository.save(game_1)
 
 game_2 = Game(team_1, 33, team_2, 44, "Pitch No.4", "28.05.3019", team_2)

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h2>{{ player.name }}</h2>
+
+    <p>Race: {{ player.race }}, Team: {{ player.team.name }}</p>
+    <p>Current position: {{ player.position }}, Current status: {{ player.status }}</p>
+
+    <article>
+        <h3> A little story about the player...</h3>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum debitis, pariatur ab, cum optio, aliquid provident repellendus qui quidem corrupti deleniti quaerat at! Adipisci temporibus quibusdam dignissimos ipsam, ut perspiciatis.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque minus quis ipsam voluptates!</p>
+        <P>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad quo, labore accusantium perspiciatis sapiente sint, numquam veritatis beatae odio perferendis corrupti in enim repudiandae et odit consequuntur quae laborum neque nostrum repellendus!</P>
+
+        <p>Yours lovingly <i>{{ player.name }}</i></p>
+
+    </article>
+
+
+
+{% endblock %}

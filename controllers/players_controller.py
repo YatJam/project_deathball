@@ -12,6 +12,11 @@ def players():
     players = player_repository.select_all()
     return render_template("players/index.html", players=players)
 
+@players_blueprint.route("/players/<id>/player")
+def player(id):
+    player = player_repository.select(id)
+    return render_template("players/player.html", player=player)
+
 @players_blueprint.route("/players/new")
 def new_player():
     return render_template("players/new.html")

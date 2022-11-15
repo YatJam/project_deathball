@@ -50,15 +50,17 @@
           </p>
   
           
-          <form action="/players/{{ player.id }}/edit" method="POST">
-            <input type="submit" value="edit">
+          <form action="/players/{{ player.id }}/edit">
+            <input type="submit" value="Update Player attributes">
         </form>
 
-          <a href="/players/{{ player.id }}/edit">Edit</a>
           <form action="/players/{{ player.id }}/delete" method="POST">
-              <input type="submit" value="Delete">
+              <input type="submit" value="Remove Player from roster">
           </form>
-          <a href="/players/{{ player.id }}">Details</a>
+
+          <form action="/players/{{ player.id }}/player">
+            <input type="submit" value="View Player's details">
+        </form>
           <hr>
       </section>
   

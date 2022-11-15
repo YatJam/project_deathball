@@ -9,7 +9,8 @@ teams_blueprint = Blueprint("teams", __name__)
 @teams_blueprint.route("/teams")
 def teams():
     teams = team_repository.select_all()
-    return render_template("teams/index.html", teams=teams)
+    players = player_repository.select_all()
+    return render_template("teams/index.html", teams=teams, players=players)
 
 @teams_blueprint.route("/teams", methods=["POST"])
 def create_team():
@@ -43,7 +44,7 @@ def delete_team(id):
     team_repository.delete(id)
     return redirect("/teams")
 
-@teams_blueprint.route("/teams/<id>")
+@teams_blueprint.route("/teams/<id>/players")
 def show_team(id):
     team = team_repository.select(id)
     players = team_repository.show_players(team)

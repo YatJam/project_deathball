@@ -67,8 +67,7 @@ def update(game):
     sql = """
     UPDATE games SET (home_team_id, home_team_score, away_team_id, away_team_score, location, date, winner_id) = 
     (%s, %s, %s, %s, %s, %s, %s) 
-    WHERE id = %s
-    """
+    WHERE id = %s"""
     values = [game.home_team.id, game.home_team_score, game.away_team.id, game.away_team_score, game.location, game.date, game.winner.id]
     run_sql(sql, values)
 

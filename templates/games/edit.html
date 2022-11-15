@@ -5,25 +5,47 @@
 
         <form action="/games/{{ game.id }}" method="POST">
             <div>
-                <label for="home_team">Home Team:</label>
-                <select name="home_team" id="home_team">
+                <label for="home_team_id">Home Team:</label>
+                <select name="home_team_id" id="home_team_id">
+                    <option value=""> {{ home_team.name }} (current)</option>
                     {% for team in teams %}
-                    <option value="{{ team.id }}" {% if team.id == game.home_team.id %} selected {% endif %}>
+                    <option value="{{ team.id }}" {% if team.id != game.home_team.id %} selected {% endif %}>
                         {{ team.name }}
                     </option>
                     {% endfor %}
                 </select>
+                <label for="home_team_score">Score:</label>
+                <input type="text" id="home_team_score" name="home_team_score" value="{{ game.home_team_score }}">
             </div>
             <div>
-                <label for="away_team">Away Team:</label>
-                <select name="away_team" id="away_team">
+                <label for="away_team_id">Away Team:</label>
+                <select name="away_team_id" id="away_team_id">
+                    <option value=""> {{ game.away_team.name }} (current)</option>
                     {% for team in teams %}
-                    <option value="{{ team.id }}" {% if team.id == game.away_team.id %} selected {% endif %}>
+                    <option value="{{ team.id }}">
                         {{ team.name }}
                     </option>
                     {% endfor %}
                 </select>
+                <label for="away_team_score">Score:</label>
+                <input type="text" id="away_team_score" name="away_team_score" value="{{ game.away_team_score }}">
             </div>
+            <div>
+                <label for="location">Location:</label>
+                <input type="text" id="location" name="location" value="{{ game.location }}">
+                <label for="date">Date:</label>
+                <input type="text" id="date" name="date" value="{{ game.date }}">
+            </div>
+            <div>
+                <label for="winner_id">Winner:</label>
+                <select name="winner_id" id="winner_id">
+                    <option value=""> {{ game.winner.name }} (current)</option>
+                    {% for team in teams %}
+                    <option value="{{ team.id }}">
+                        {{ team.name }}
+                    </option>
+                    {% endfor %}
+                </select>
             <div>
                 <input type="submit">
             </div>
