@@ -2,6 +2,8 @@ from flask import Blueprint, Flask, redirect, render_template, request
 
 from models.player import Player
 import repositories.player_repository as player_repository
+from models.team import Team
+import repositories.team_repository as team_repository
 
 players_blueprint = Blueprint("player", __name__)
 
@@ -18,26 +20,31 @@ def new_player():
 def create_player():
     name = request.form["name"]
     race = request.form["race"]
+    team_id = request.form['team_id']
+    team = team_repository.select(team_id)
     position = request.form["position"]
     special_ability = request.form["special_ability"]
     status = "Healthy"
-    new_player = Player(name, race, position, special_ability, status)
+    new_player = Player(name, race, team, position, special_ability, status)
     player_repository.save(new_player)
     return redirect("/players")
 
 @players_blueprint.route("/players/<id>/edit")
 def edit_player(id):
     player = player_repository.select(id)
-    return render_template('players/edit.html', player=player)
+    team = team_repository.select_all()
+    return render_template('players/edit.html', player=player, team=team)
 
 @players_blueprint.route("/players/<id>", methods=["POST"])
 def update_player(id):
     name = request.form["name"]
     race = request.form["race"]
+    team_id = request.form['team_id']
+    team = team_repository.select(team_id)
     position = request.form["position"]
     special_ability = request.form["special_ability"]
     status = request.form["status"]
-    player = Player(name, race, position, special_ability, status, id)
+    player = Player(name, race, team, position, special_ability, status, id)
     player_repository.update(player)
     return redirect("/players")
 

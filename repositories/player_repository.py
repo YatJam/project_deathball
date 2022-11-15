@@ -1,10 +1,12 @@
 from db.run_sql import run_sql
 
 from models.player import Player
+from models.team import Team
+import repositories.team_repository as team_repository
 
 def save(player):
-    sql = "INSERT INTO players (name, race, position, special_ability, status) VALUES (%s, %s, %s, %s, %s) RETURNING id"
-    values = [player.name, player.race, player.position, player.special_ability, player.status]
+    sql = "INSERT INTO players (name, race, team_id position, special_ability, status) VALUES (%s, %s, %s, %s, %s, %s) RETURNING id"
+    values = [player.name, player.race, player.team.id, player.position, player.special_ability, player.status]
     results = run_sql(sql, values)
     id = results[0]['id']
     player.id = id
@@ -15,7 +17,9 @@ def select_all():
     sql = "SELECT * FROM players"
     results = run_sql(sql)
     for result in results:
-        player = Player(result["name"], result["race"], result["position"], result["special_ability"], result["status"], result["id"])
+        team_id = result['team_id']
+        team = team_repository.select(team_id)
+        player = Player(result["name"], result["race"], team, result["position"], result["special_ability"], result["status"], result["id"])
         players.append(player)
     return players
 
@@ -27,7 +31,9 @@ def select(id):
     results = run_sql(sql, values)
     if results:
         result = results[0]
-        player = Player(result["name"], result["race"], result["position"], result["special_ability"], result["status"], result["id"])
+        team_id = result['team_id']
+        team = team_repository.select(team_id)
+        player = Player(result["name"], result["race"], team, result["position"], result["special_ability"], result["status"], result["id"])
     return player
 
 
@@ -43,6 +49,6 @@ def delete(id):
 
 
 def update(player):
-    sql = "UPDATE players SET (name, race, position, special_ability, status) = (%s, %s, %s, %s, %s) WHERE id = %s"
-    values = [player.name, player.race, player.position, player.special_ability, player.status, player.id]
+    sql = "UPDATE players SET (name, race, team_id, position, special_ability, status) = (%s, %s, %s, %s, %s, %s) WHERE id = %s"
+    values = [player.name, player.race, player.team.id, player.position, player.special_ability, player.status, player.id]
     run_sql(sql, values)
