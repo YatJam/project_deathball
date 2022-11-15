@@ -11,7 +11,7 @@ player_repository.delete_all()
 game_repository.delete_all()
 team_repository.delete_all()
 
-team_0 = Team("Bench Warmers", "None", 0, 0, 0)
+team_0 = Team("Bench Warmers", None, None, None, None)
 team_repository.save(team_0)
 
 team_1 = Team("Ork orkers", "Orks", 4, 2, 14)
