@@ -24,6 +24,7 @@ def select_all():
 
 
 def select(id):
+    team = None
     sql = "SELECT * FROM teams WHERE id = %s"
     values = [id]
     results = run_sql(sql, values)
@@ -50,9 +51,7 @@ def update(team):
 
 def show_players(team):
     players = []
-    sql = """SELECT  players.*
-            FROM players
-            WHERE teams.id = %s"""  
+    sql = """SELECT * FROM players WHERE players.team_id = %s"""  
     values = [team.id]
     results = run_sql(sql, values)
     for result in results:

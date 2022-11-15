@@ -25,12 +25,16 @@ def new_player():
 def create_player():
     name = request.form["name"]
     race = request.form["race"]
-    team_id = request.form['team_id']
-    team = team_repository.select(team_id)
+
+    team = team_repository.select(id=1) # By default, we assign a player to the Substitutions Team
+    if "team_id" in request.form.keys():
+        team_id = request.form['team_id']
+        team = team_repository.select(team_id)
+    
     position = request.form["position"]
-    special_ability = request.form["special_ability"]
     status = "Healthy"
-    new_player = Player(name, race, team, position, special_ability, status)
+    special = request.form["special"]
+    new_player = Player(name, race, team, position, status, special)
     player_repository.save(new_player)
     return redirect("/players")
 
@@ -46,11 +50,10 @@ def update_player(id):
     race = request.form["race"]
     team_id = request.form['team_id']
     position = request.form["position"]
-    special_ability = request.form["special_ability"]
     status = request.form["status"]
-
+    special = request.form["special"]
     team = team_repository.select(team_id)
-    player = Player(name, race, team, position, special_ability, status, id)
+    player = Player(name, race, team, position, status, special, id)
 
     player_repository.update(player)
     return redirect("/players")

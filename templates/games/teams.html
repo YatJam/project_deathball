@@ -6,7 +6,12 @@
         <section>
             <h3>{{ game.home_team.name }} vs {{ game.away_team.name }}</h3>
             <h4>Teams: </h4>
-            {% for team in teams %}
+            {% for player in home_team_players %}
+                <p>
+                    {{ player.name }}
+                </p>
+            {% endfor %}
+            {% for player in away_team_players %}
                 <p>
                     {{ player.name }}
                 </p>

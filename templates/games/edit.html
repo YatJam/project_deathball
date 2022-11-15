@@ -5,11 +5,11 @@
 
         <form action="/games/{{ game.id }}" method="POST">
             <div>
-                <label for="home_team_id">Home Team:</label>
+                <label for="home_team_id">Home Team: </label>
                 <select name="home_team_id" id="home_team_id">
-                    <option value=""> {{ home_team.name }} (current)</option>
-                    {% for team in teams %}
-                    <option value="{{ team.id }}" {% if team.id != game.home_team.id %} selected {% endif %}>
+                    <option value="{{ game.home_team.id }}"> {{ game.home_team.name }} (current)</option>
+                        {% for team in teams %}
+                    <option value="{{ team.id }}">
                         {{ team.name }}
                     </option>
                     {% endfor %}
@@ -18,9 +18,9 @@
                 <input type="text" id="home_team_score" name="home_team_score" value="{{ game.home_team_score }}">
             </div>
             <div>
-                <label for="away_team_id">Away Team:</label>
+                <label for="away_team_id">Away Team: </label>
                 <select name="away_team_id" id="away_team_id">
-                    <option value=""> {{ game.away_team.name }} (current)</option>
+                    <option value="{{ game.away_team.id }}"> {{ game.away_team.name }} (current)</option>
                     {% for team in teams %}
                     <option value="{{ team.id }}">
                         {{ team.name }}
@@ -36,17 +36,6 @@
                 <label for="date">Date:</label>
                 <input type="text" id="date" name="date" value="{{ game.date }}">
             </div>
-            <div>
-                <label for="winner_id">Winner:</label>
-                <select name="winner_id" id="winner_id">
-                    <option value=""> {{ game.winner.name }} (current)</option>
-                    {% for team in teams %}
-                    <option value="{{ team.id }}">
-                        {{ team.name }}
-                    </option>
-                    {% endfor %}
-                </select>
-            <div>
                 <input type="submit">
             </div>
         </form>

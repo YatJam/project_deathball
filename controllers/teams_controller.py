@@ -48,4 +48,5 @@ def delete_team(id):
 def show_team(id):
     team = team_repository.select(id)
     players = team_repository.show_players(team)
+
     return render_template('teams/players.html', team=team, players=players)

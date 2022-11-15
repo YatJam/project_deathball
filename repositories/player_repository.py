@@ -5,8 +5,8 @@ from models.team import Team
 import repositories.team_repository as team_repository
 
 def save(player):
-    sql = "INSERT INTO players (name, race, team_id, position, special_ability, status) VALUES (%s, %s, %s, %s, %s, %s) RETURNING id"
-    values = [player.name, player.race, player.team.id, player.position, player.special_ability, player.status]
+    sql = "INSERT INTO players (name, race, team_id, position, status, special) VALUES (%s, %s, %s, %s, %s, %s) RETURNING id"
+    values = [player.name, player.race, player.team.id, player.position, player.status, player.special]
     results = run_sql(sql, values)
     id = results[0]['id']
     player.id = id
@@ -19,7 +19,7 @@ def select_all():
     for result in results:
         team_id = result['team_id']
         team = team_repository.select(team_id)
-        player = Player(result["name"], result["race"], team, result["position"], result["special_ability"], result["status"], result["id"])
+        player = Player(result["name"], result["race"], team, result["position"], result["status"], result["special"], result["id"])
         players.append(player)
     return players
 
@@ -33,7 +33,7 @@ def select(id):
         result = results[0]
         team_id = result['team_id']
         team = team_repository.select(team_id)
-        player = Player(result["name"], result["race"], team, result["position"], result["special_ability"], result["status"], result["id"])
+        player = Player(result["name"], result["race"], team, result["position"], result["status"], result["special"], result["id"])
     return player
 
 
@@ -49,6 +49,6 @@ def delete(id):
 
 
 def update(player):
-    sql = "UPDATE players SET (name, race, team_id, position, special_ability, status) = (%s, %s, %s, %s, %s, %s) WHERE id = %s"
-    values = [player.name, player.race, player.team.id, player.position, player.special_ability, player.status, player.id]
+    sql = "UPDATE players SET (name, race, team_id, position, status, special) = (%s, %s, %s, %s, %s, %s) WHERE id = %s"
+    values = [player.name, player.race, player.team.id, player.position, player.status, player.special, player.id]
     run_sql(sql, values)

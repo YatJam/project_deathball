@@ -5,9 +5,9 @@
 
     <h1>Draft new player:</h1>
     <form class="new-player" action="/players" method="post">
-        <label for="name">Player Name:</label>
+        <label for="name">Player Name: </label>
         <input type="text" name="name" id="name">
-        <label for="race">Race:</label>
+        <label for="race">Race: </label>
         <select name="race" id="race">
             <option value="" disabled selected>select player race</option>
             <option value="Daemon">Daemon</option>
@@ -21,7 +21,7 @@
             <option value="Troll">Troll</option>
             <option value="Undead">Undead</option>
         </select>
-        <label for="position">Position:</label>
+        <label for="position">Position: </label>
         <select name="position" id="position">
             <option value="" disabled selected>select player position</option>
             <option value="Blitzer">Blitzer</option>
@@ -33,8 +33,8 @@
             <option value="Star Player">Star Player</option>
             <option value="Thrower">Thrower</option>
         </select>
-        <label for="special_ability">Special Ability:</label>
-        <input type="text" name="special_ability" id="special_ability">
+        <label for="special">Special: </label>
+        <input type="text" name="special" id="special">
         <input type="submit" value="Add player to roster">
       </form>
     
@@ -46,7 +46,7 @@
           <h3>{{ player.name }}</h3>
           <p>Race: {{ player.race }}, Team: {{ player.team.name }}
           </p>
-          <p>Position: {{ player.position }}, Special Ability: {{ player.special_ability }}, Status: {{ player.status }}
+          <p>Position: {{ player.position }}, Status: {{ player.status }}, Special: {{ player.special }}
           </p>
   
           

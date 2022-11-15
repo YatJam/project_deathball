@@ -5,11 +5,11 @@
 
     <form action="/players/{{ player.id }}" method="POST">
         <div>
-            <label for="name">Name:</label>
+            <label for="name">Name: </label>
             <input type="text" id="name" name="name" value="{{ player.name }}">
         </div>
         <div>
-            <label for="race">Race:</label>
+            <label for="race">Race: </label>
             <select name="race" id="race">
                 <option value="{{ player.race }}">{{ player.race }} (current)</option>
                 <option value="Daemon">Daemon</option>
@@ -23,14 +23,14 @@
                 <option value="Troll">Troll</option>
                 <option value="Undead">Undead</option>
             </select>
-            <label for="team_id">Team:</label>
+            <label for="team_id">Team: </label>
             <select name="team_id" id="team_id">
                 <option value=""> {{ player.team.name }} current</option>
                 {% for team in teams %}
                 <option value="{{ team.id }}">{{ team.name }}</option>
                {% endfor %}
             </select>
-            <label for="position">Position:</label>
+            <label for="position">Position: </label>
             <select name="position" id="position">
                 <option value="{{ player.position }}">{{ player.position }} (current)</option>
                 <option value="Blitzer">Blitzer</option>
@@ -42,9 +42,7 @@
                 <option value="Star Player">Star Player</option>
                 <option value="Thrower">Thrower</option>
             </select>
-            <label for="special_ability">Special Ability:</label>
-            <input type="text" name="special_ability" id="special_ability">
-            <label for="status">Status:</label>
+            <label for="status">Status: </label>
             <select name="status" id="status">
                 <option value="{{ player.status }}">{{ player.status }} (current)</option>
                 <option value="Healthy">Healthy</option>
@@ -53,6 +51,8 @@
                 <option value="Possessed">Possessed</option>
                 <option value="Dead">Dead</option>
             </select>
+            <label for="special">Special: </label>
+            <input type="text" name="special" id="special" value="{{ player.special }}">
         <div>
             <input type="submit">
         </div>

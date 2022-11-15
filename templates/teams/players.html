@@ -9,7 +9,7 @@
             <h4>Players: </h4>
             {% for player in players %}
                 <p>
-                    {{ team.player.name }}
+                    {{ player.name }}, {{ player.position }}
                 </p>
             {% endfor %}
             <a href="/teams/{{ team.id }}/edit">Edit</a>

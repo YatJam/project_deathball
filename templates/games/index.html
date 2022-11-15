@@ -11,7 +11,7 @@
                     <option value="{{ team.id }}">{{ team.name }}</option>
                    {% endfor %}
                 </select>
-                <select name="away_team_id" id="awat_team_id">
+                <select name="away_team_id" id="away_team_id">
                     <option value="">Select away team to play against</option>
                     {% for team in teams %}
                     <option value="{{ team.id }}">{{ team.name }}</option>
@@ -21,8 +21,6 @@
                      <input type="text" name="location" id="location">
                      <label for="date">Date:</label>
                      <input type="text" name="date" id="date">
-                     <select name="winner_id" id="winner_id">
-                        <option value="winner_id">Game has not played</option>
                  <input type="submit" value="Call game">
              </form>
 
