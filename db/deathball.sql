@@ -8,7 +8,7 @@ CREATE TABLE teams (
     name VARCHAR(225),
     race VARCHAR(225),
     total_wins INT,
-    total_loses INT,
+    total_losses INT,
     total_fouls INT
 );
 

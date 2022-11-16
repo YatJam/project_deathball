@@ -17,9 +17,9 @@ def create_team():
     name = request.form["name"]
     race = request.form["race"]
     total_wins = 0
-    total_loses = 0
+    total_losses = 0
     total_fouls = 0
-    new_team = Team(name, race, total_wins, total_loses, total_fouls)
+    new_team = Team(name, race, total_wins, total_losses, total_fouls)
     team_repository.save(new_team)
     return redirect("/teams")
 
@@ -33,9 +33,9 @@ def update_team(id):
     name = request.form["name"]
     race = request.form["race"]
     total_wins = request.form["total_wins"]
-    total_loses = request.form["total_loses"]
+    total_losses = request.form["total_losses"]
     total_fouls = request.form["total_fouls"]
-    team = Team(name, race, total_wins, total_loses, total_fouls, id)
+    team = Team(name, race, total_wins, total_losses, total_fouls, id)
     team_repository.update(team)
     return redirect("/teams")
 

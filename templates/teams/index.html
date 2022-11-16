@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
+{% macro display_not_available(attribute) %}
+    {{ "N/A" if attribute == None else attribute }}
+{% endmacro %}
 
 <h2>Teams</h2>
 
@@ -27,9 +30,9 @@
     <section>
         <h3>{{ team.name }}</h3>
         <p>{{ team.race }}</p>
-        <p>Total wins: {{ "N/A" if team.total_wins == None else team.total_wins }}, 
-            Total losses: {{ "N/A" if team.total_loses == None else team.total_loses }}, 
-            Total fouls: {{ "N/A" if team.total_fouls == None else team.total_fouls }}
+        <p>Total wins: {{ display_not_available(team.total_wins) }}, 
+            Total losses: {{ display_not_available(team.total_losses) }}, 
+            Total fouls: {{ display_not_available(team.total_fouls) }}
         </p>
 
         <form action="/teams/{{ team.id }}/edit">

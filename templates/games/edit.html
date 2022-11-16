@@ -31,10 +31,18 @@
                 <input type="text" id="away_team_score" name="away_team_score" value="{{ game.away_team_score }}">
             </div>
             <div>
-                <label for="location">Location:</label>
-                <input type="text" id="location" name="location" value="{{ game.location }}">
-                <label for="date">Date:</label>
-                <input type="text" id="date" name="date" value="{{ game.date }}">
+                <label for="location">location: </label>
+                <select name="location" id="location">
+                    <option value="{{ game.location }}">{{ game.location }} (current)</option>
+                    <option value="Abyssal Plain">Abyssal Plain</option>
+                    <option value="Dracula's back garden">Dracula's back garden</option>
+                    <option value="Dugrund's AstroTurf Palace">Dugrund's AstroTurf Palace</option>
+                    <option value="Farmer Maggot's spare field">Farmer Maggot's spare field</option>
+                    <option value="Pitch No.4">Pitch No.4</option>
+                    <option value="The Imperial Arena">The Imperial Arena</option>
+                </select>
+                     <label for="date">Date:</label>
+                     <input type="date" name="date" id="date" value="{{ game.date }}">
             </div>
                 <input type="submit">
             </div>

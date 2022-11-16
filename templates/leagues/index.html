@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Alright</h1>
+<body>
+    <nav>
+        <ul class="league-menue">
+                    <li><a href="/leagues">All fixtures</a></li>
+                </ul>
+                <ul>
+                    <li><a href="/games">Future fixtures</a></li>
+                </ul>
+                    <ul>
+                        <li><a href="/teams">Past fixtures this season</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/players">Previous champions</a></li>
+                    </ul>
+                </li>
+                
+            </ul>
+        </nav>
+
+        <div>
+            <h2>Leader board</h2>
+            <table class="league-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Race</th>
+                        <th>Total Wins</th>
+                        <th>Total Losses</th>
+                        <th>Total Fouls</th>
+                        <th>Total Points</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for team in teams %}
+
+                <tr><td>{{ team.name }}</td>
+                    <td>{{ team.race }}</td>
+                    <td>{{ team.total_wins }}</td>
+                    <td>{{ team.total_losses }}</td>
+                    <td>{{ team.total_fouls }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+{% endblock %}

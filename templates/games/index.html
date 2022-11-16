@@ -17,10 +17,18 @@
                     <option value="{{ team.id }}">{{ team.name }}</option>
                    {% endfor %}
                 </select>
-                    <label for="location">Location:</label>
-                     <input type="text" name="location" id="location">
+                <label for="location">location: </label>
+                <select name="location" id="location">
+                    <option value="" disabled selected>select your location</option>
+                    <option value="Abyssal Plain">Abyssal Plain</option>
+                    <option value="Dracula's back garden">Dracula's back garden</option>
+                    <option value="Dugrund's AstroTurf Palace">Dugrund's AstroTurf Palace</option>
+                    <option value="Farmer Maggot's spare field">Farmer Maggot's spare field</option>
+                    <option value="Pitch No.4">Pitch No.4</option>
+                    <option value="The Imperial Arena">The Imperial Arena</option>
+                </select>
                      <label for="date">Date:</label>
-                     <input type="text" name="date" id="date">
+                     <input type="date" name="date" id="date" value="2493-11-17">
                  <input type="submit" value="Call game">
              </form>
 
