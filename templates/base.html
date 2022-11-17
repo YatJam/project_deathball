@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caesar+Dressing">
     <title>DEATH BALL</title>
 </head>
 <body>
@@ -12,7 +13,7 @@
         <h1>DEATH BALL</h1>
         <nav>
             <ul class="menu">
-                <li><a href="/">Home</a></li>
+                <li><a href="/">Da Home</a></li>
                 <ul>
                     <li><a href="/leagues">Da League</a></li>
                 </ul>
@@ -30,7 +31,19 @@
             </ul>
         </nav>
     </header>
+    <section class="header-banner">
+    </section>
+
+    <main>
+
+    
         {% block content %}
         {% endblock %}
+    </main>
 </body>
+<footer>
+    <section>
+        <p>Footer</p>
+    </section>
+</footer>
 </html>

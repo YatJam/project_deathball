@@ -35,7 +35,7 @@
         {% for game in games %}
 
         <section>
-            <p>{{ game.home_team.name }} vs {{ game.away_team.name }}</p>
+            <p>{{ game.home_team.name }}: score {{ game.home_team_score }} vs {{ game.away_team.name }}: score {{ game.away_team_score }}</p>
             <p>Game location: {{ game.location}}, Date: {{ game.date }}</p>
             <form action="/games/{{ game.id }}/edit">
                 <input type="submit" value="Update fixture">

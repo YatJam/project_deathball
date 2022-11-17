@@ -1,9 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h2>Players</h2>
+    <h1>Da Playurz</h1>
+    <br>
+    <br>
 
-    <h1>Draft new player:</h1>
+    <h2>Draft new player:</h2>
     <form class="new-player" action="/players" method="post">
         <label for="name">Player Name: </label>
         <input type="text" name="name" id="name">
@@ -36,13 +38,15 @@
         <label for="special">Special: </label>
         <input type="text" name="special" id="special">
         <input type="submit" value="Add player to roster">
+        <br>
+        <hr>
       </form>
     
     
 
       {% for player in players %}
 
-      <section>
+      <section class="players-format">
           <h3>{{ player.name }}</h3>
           <p>Race: {{ player.race }}, Team: {{ player.team.name }}
           </p>

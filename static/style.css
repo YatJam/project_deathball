@@ -1,0 +1,78 @@
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    background-image: url('/static/images/DeathBall_Pitch.png');
+    background-size: cover;
+    
+}
+
+h1 {
+    font-family: caesar dressing;
+    color: red;
+    text-shadow: 2px 2px black;
+    font-size: 5rem;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    color: yellow;
+    list-style-type: none;
+    text-decoration: none;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    font-size: 3rem;
+    font-family: caesar dressing;
+    text-shadow: 2px 2px red;
+}
+
+a:hover{
+    color: red;
+}
+
+/* header {
+    background-color: green;
+    border-bottom: solid;
+    border-width: 1rem;
+    border-color: red;
+} */
+
+main {
+    background-image: url('/static/images/png-transparent-paper-scroll-paper-miscellaneous-presentation-parchment-thumbnail-removebg-preview.png');
+    background-size: cover;
+    padding: 5rem;
+    margin: 2rem;
+    
+    
+}
+
+.news {
+    font-family: caesar dressing;
+    font-size: 3rem;
+}
+
+
+.text-align {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 10rem;
+
+}
+
+.article-news {
+    font-family: luminari, fantasy;
+}
+
+.players-format {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+    margin: -1rem;
+}
