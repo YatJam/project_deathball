@@ -47,10 +47,13 @@
       {% for player in players %}
 
       <section class="players-format">
-          <h3>{{ player.name }}</h3>
-          <p>Race: {{ player.race }}, Team: {{ player.team.name }}
+          <h3>{{ player.name }}&nbsp&nbsp </h3>
+          <p>Race: {{ player.race }}&nbsp
+            Team: {{ player.team.name }} 
           </p>
-          <p>Position: {{ player.position }}, Status: {{ player.status }}, Special: {{ player.special }}
+          <p>Position: {{ player.position }}&nbsp 
+            <br>
+            Status: {{ player.status }}, Special: {{ player.special }} 
           </p>
   
           
@@ -66,6 +69,7 @@
             <input type="submit" value="View Player's details">
         </form>
           <hr>
+          <br>
       </section>
   
       {% endfor %}
