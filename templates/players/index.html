@@ -1,15 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
 
+<main class="players-main">
+
     <h1>Da Playurz</h1>
     <br>
     <br>
-
-    <h2>Draft new player:</h2>
-    <form class="new-player" action="/players" method="post">
-        <label for="name">Player Name: </label>
-        <input type="text" name="name" id="name">
-        <label for="race">Race: </label>
+    <div class="new-player">
+    <form class="form-height" action="/players" method="post">
+        <label for="name"><img src="/static/images/d968e77cd4232910d75e01f65a519a27.png" alt="medieval p" width="auto" height="75px" style="vertical-align:middle"> layer Name: </label>
+        <input type="text" name="name" id="name" placeholder="type player name">
+        <label for="race"><img src="/static/images/poster_504x498_f8f8f8-pad_600x600_f8f8f8-removebg-preview.png" alt="medieval r" width="auto" height="75px" style="vertical-align:middle"> ace: </label>
         <select name="race" id="race">
             <option value="" disabled selected>select player race</option>
             <option value="Daemon">Daemon</option>
@@ -23,7 +24,7 @@
             <option value="Troll">Troll</option>
             <option value="Undead">Undead</option>
         </select>
-        <label for="position">Position: </label>
+        <label for="position"><img src="/static/images/illum-P-removebg-preview.png" alt="medieval p" width="auto" height="100px" style="vertical-align:middle"> osition: </label>
         <select name="position" id="position">
             <option value="" disabled selected>select player position</option>
             <option value="Blitzer">Blitzer</option>
@@ -35,44 +36,57 @@
             <option value="Star Player">Star Player</option>
             <option value="Thrower">Thrower</option>
         </select>
-        <label for="special">Special: </label>
-        <input type="text" name="special" id="special">
-        <input type="submit" value="Add player to roster">
+        <label for="special"><img src="/static/images/7396b31c7d53bca8411da871b1b05555-removebg-preview.png" alt="medieval s" width="auto" height="60px" style="vertical-align:middle"> pecial: </label>
+        <input type="text" name="special" id="special" placeholder="type special attribute">
         <br>
-        <hr>
+        <input class="new-player-button" type="submit" value="Add player to roster">
+        <br>
       </form>
+    </div>
     
     
 
-      {% for player in players %}
+        <div >
+            <table class="player-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Race</th>
+                        <th>Team</th>
+                        <th>Position</th>
+                        <th>Status</th>
+                        <th>Special</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for player in players %}
 
-      <section class="players-format">
-          <h3>{{ player.name }}&nbsp&nbsp </h3>
-          <p>Race: {{ player.race }}&nbsp
-            Team: {{ player.team.name }} 
-          </p>
-          <p>Position: {{ player.position }}&nbsp 
-            <br>
-            Status: {{ player.status }}, Special: {{ player.special }} 
-          </p>
-  
-          
-          <form action="/players/{{ player.id }}/edit">
-            <input type="submit" value="Update Player attributes">
-        </form>
-
-          <form action="/players/{{ player.id }}/delete" method="POST">
-              <input type="submit" value="Remove Player from roster">
-          </form>
-
-          <form action="/players/{{ player.id }}/player">
-            <input type="submit" value="View Player's details">
-        </form>
-          <hr>
-          <br>
-      </section>
-  
-      {% endfor %}
+                <tr><td>{{ player.name }}</td>
+                    <td>{{ player.race }}</td>
+                    <td>{{ player.team.name }}</td>
+                    <td>{{ player.position }}</td>
+                    <td>{{ player.status }}</td>
+                    <td>{{ player.special }}</td>
+                    <td>
+                        <form action="/players/{{ player.id }}/edit">
+                            <input class="player-action" type="submit" value="Update Player attributes">
+                        </form>
+            
+            
+                    <form action="/players/{{ player.id }}/delete" method="POST">
+                        <input class="player-action" type="submit" value="Remove Player from roster">
+                    </form>
+            
+                    <form action="/players/{{ player.id }}/player">
+                        <input class="player-action" type="submit" value="View Player's details">
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
 
+    </main>
 {% endblock %}
