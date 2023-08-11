@@ -41,6 +41,6 @@ Please ensure you have Visual Studio Code installed on your machine.
 1. Use control + c in the terminal to close the app.
 
 ## Homepage
-![alt text](image/homepage.png)
+![alt text](/static/images/homepage.png)
 
 
